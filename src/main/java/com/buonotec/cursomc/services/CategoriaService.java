@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.buonotec.cursomc.domain.Categoria;
 import com.buonotec.cursomc.repositories.CategoriaRepository;
+import com.buonotec.cursomc.services.exceptions.ObjectNotFoundException;
+
 
 @Service
 public class CategoriaService {
@@ -16,7 +18,7 @@ public class CategoriaService {
 	
 	public Categoria buscarCategoria(Integer id) {
 		Optional<Categoria> opt = categoriaDao.findById(id);
-		return opt.orElse(null);
+			return opt.orElseThrow(() -> new ObjectNotFoundException("Objeto nao encontrado!"));
 	}
 	
 }
